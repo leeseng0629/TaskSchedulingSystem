@@ -14,6 +14,17 @@ public class TaskSchedulingSystemApp {
 
 	public static void main(String[] args) {
 		
+		ArrayList<Job> jobList = new ArrayList<>();
+		jobList.add(new Job(0, 1, 3, 5));
+		jobList.add(new Job(1, 2, 5, 6));
+		jobList.add(new Job(2, 4, 6, 5));
+		jobList.add(new Job(3, 6, 7, 4));
+		jobList.add(new Job(4, 5, 8, 11));
+		jobList.add(new Job(5, 7, 9, 2));
+		
+		WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit();
+        System.out.println(mp.maximum(jobList));
+		
 		/*
 		Job jobs[] = new Job[6];
         jobs[0] = new Job(0, 1, 3, 5);
@@ -26,6 +37,7 @@ public class TaskSchedulingSystemApp {
         System.out.println(mp.maximum(jobs));
         */
 		
+		/*
 		String csvFile = "jobs.txt";
         BufferedReader br = null;
         String line = "";
@@ -61,6 +73,8 @@ public class TaskSchedulingSystemApp {
 		}
 		
 		System.out.println(jobList);
+		*/
+		
 		/*
 		Random intRandom = new Random();
 		JobComparatorByDeadline byDeadline = new JobComparatorByDeadline();
