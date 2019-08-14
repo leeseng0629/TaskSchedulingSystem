@@ -16,11 +16,10 @@ public class Job {
 		this.profit = profit;
 	}
 	
-	public Job(int jobId, int startTime, int finishTime, int deadline, int profit) {
+	public Job(int jobId, int startTime, int finishTime, int profit) {
 		this.jobId = jobId;
 		this.startTime = startTime;
 		this.finishTime = finishTime;
-		// this.deadline = deadline;
 		this.profit = profit;
 	}
 
