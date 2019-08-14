@@ -14,12 +14,7 @@ public class TaskSchedulingSystemApp {
 
 	public static void main(String[] args) {
 		
-		String csvFile = "jobs.txt";
-        BufferedReader br = null;
-        String line = "";
-        String csvSplitBy = ",";
-		
-        /*
+		/*
 		Job jobs[] = new Job[6];
         jobs[0] = new Job(0, 1, 3, 5);
         jobs[1] = new Job(1, 2, 5, 6);
@@ -30,6 +25,11 @@ public class TaskSchedulingSystemApp {
         WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit();
         System.out.println(mp.maximum(jobs));
         */
+		
+		String csvFile = "jobs.txt";
+        BufferedReader br = null;
+        String line = "";
+        String csvSplitBy = ",";
         
         ArrayList<Job> jobList = new ArrayList<>();
 		
@@ -60,6 +60,7 @@ public class TaskSchedulingSystemApp {
 				}
 		}
 		
+		System.out.println(jobList);
 		/*
 		Random intRandom = new Random();
 		JobComparatorByDeadline byDeadline = new JobComparatorByDeadline();
@@ -79,7 +80,6 @@ public class TaskSchedulingSystemApp {
 		Collections.sort(jobList, byProfit);
 		System.out.println(jobList);
 		*/
-		System.out.println(jobList);
 		
 	}
 	
