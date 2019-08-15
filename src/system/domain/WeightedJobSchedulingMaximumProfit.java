@@ -8,83 +8,90 @@ import java.util.List;
 
 public class WeightedJobSchedulingMaximumProfit {
 	private Comparator<Job> byFinishTime;
+	private List<Job> jobList;
+	
 	private List<Integer> profitList;
-	private List<LinkedList<Integer>> jobLinkedList;
-	
-	private List<Integer> jobSequenced;
-	
 	private int maxProfit;
+	
+	private List<LinkedList<Job>> jobLinkedList;
+	private List<Job> jobSequenced;
 	private int jobSequencedIndex;
 	
-	public WeightedJobSchedulingMaximumProfit() {
-		byFinishTime = new JobComparatorByFinishTime();
-		profitList = new ArrayList<>();
-		jobLinkedList = new ArrayList<>();
+	public WeightedJobSchedulingMaximumProfit(List<Job> jobList) {
+		this.byFinishTime = new JobComparatorByFinishTime();
 		
-		jobSequenced = new LinkedList<>();
+		this.profitList = new ArrayList<>();
+		this.maxProfit = Integer.MIN_VALUE;
 		
-		maxProfit = Integer.MIN_VALUE;
-		jobSequencedIndex = 0;
+		this.jobList = jobList;
+		this.jobLinkedList = new ArrayList<>();
+		this.jobSequenced = new LinkedList<>();
+		this.jobSequencedIndex = 0;
 	}
 	
-	public int maximum(ArrayList<Job> jobList) {
-		Collections.sort(jobList, byFinishTime);
-		profitList.add(jobList.get(0).getProfit());
-		jobLinkedList.add(new LinkedList<>());
-		jobLinkedList.get(0).add(jobList.get(0).getJobId());
-		
-		for (int i = 1; i < jobList.size(); i++) {
+	public void calculateMaxProfitAndSequencingJob() {
+		int counter = 0;
+		while (jobList.size() != 0) {
+			profitList = new ArrayList<>();
+			jobLinkedList = new ArrayList<>();
+			jobSequenced = new LinkedList<>();
+			maxProfit = Integer.MIN_VALUE;
+			jobSequencedIndex = 0;
 			
-			profitList.add(jobList.get(i).getProfit());
+			Collections.sort(jobList, byFinishTime);
+			profitList.add(jobList.get(0).getProfit());
 			jobLinkedList.add(new LinkedList<>());
-			jobLinkedList.get(i).add(jobList.get(i).getJobId());
+			jobLinkedList.get(0).add(jobList.get(0));
 			
-			for (int j = i - 1; j >= 0; j--) {
+			for (int i = 1; i < jobList.size(); i++) {
+				profitList.add(jobList.get(i).getProfit());
+				jobLinkedList.add(new LinkedList<>());
+				jobLinkedList.get(i).add(jobList.get(i));
 				
-				if (jobList.get(j).getFinishTime() <= jobList.get(i).getStartTime()) {
-					
-					int previousAndNowProfit = jobList.get(i).getProfit() + profitList.get(j);
-					int element = 0;
-					boolean changed = false;
-					
-					if (previousAndNowProfit > profitList.get(i)) {
-						element = previousAndNowProfit;
-						profitList.set(i, element);
-						changed = true;
+				for (int j = i - 1; j >= 0; j--) {
+					if (jobList.get(j).getFinishTime() <= jobList.get(i).getStartTime()) {
+						int previousAndNowProfit = jobList.get(i).getProfit() + profitList.get(j);
+						int element = 0;
+						boolean changed = false;
+						
+						if (previousAndNowProfit > profitList.get(i)) {
+							element = previousAndNowProfit;
+							profitList.set(i, element);
+							changed = true;
+						}
+						
+						if (changed) {
+							LinkedList<Job> previousList = jobLinkedList.get(j);
+							jobLinkedList.get(i).clear();
+							jobLinkedList.get(i).add(jobList.get(i));
+							jobLinkedList.get(i).addAll(0, previousList);
+						}
 					}
-					
-					if (changed) {
-						LinkedList<Integer> previousList = jobLinkedList.get(j);
-						jobLinkedList.get(i).clear();
-						jobLinkedList.get(i).add(jobList.get(i).getJobId());
-						jobLinkedList.get(i).addAll(0, previousList);
-					}
-					break;
-					
 				}
-				
 			}
 			
-		}
-		
-		for (int i = 0; i < profitList.size(); i++) {
-			if (maxProfit < profitList.get(i)) {
-				maxProfit = profitList.get(i);
-				this.jobSequencedIndex = i;
+			for (int i = 0; i < profitList.size(); i++) {
+				if (maxProfit < profitList.get(i)) {
+					maxProfit = profitList.get(i);
+					this.jobSequencedIndex = i;
+				}
 			}
+			
+			jobSequenced = jobLinkedList.get(jobSequencedIndex);
+			jobList.removeAll(jobSequenced);
+			System.out.println(counter + " " + maxProfit);
+			System.out.println(counter + " " + jobList);
+			System.out.println(counter + " " + jobLinkedList);
+			System.out.println(counter + " " + profitList);
+			counter++;
 		}
-		
-		jobSequenced = jobLinkedList.get(jobSequencedIndex);
-		
-		return this.maxProfit;
-		
 	}
 	
-	public List<Integer> getJobSequenced() {
+	public List<Job> getJobSequenced() {
 		return this.jobSequenced;
 	}
 	
-	public List<LinkedList<Integer>> getJobLinkedList() {
+	public List<LinkedList<Job>> getJobLinkedList() {
 		return this.jobLinkedList;
 	}
 	

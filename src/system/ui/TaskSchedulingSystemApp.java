@@ -22,14 +22,13 @@ public class TaskSchedulingSystemApp {
 		jobList.add(new Job(4, 5, 8, 11));
 		jobList.add(new Job(5, 7, 9, 2));
 		
-		WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit();
-        System.out.println(mp.maximum(jobList));
-        System.out.println(mp.getProfitList());
+		WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit(jobList);
+		mp.calculateMaxProfitAndSequencingJob();
+        /*System.out.println(mp.getProfitList());
         System.out.println(mp.getJobLinkedList());
-        System.out.println(mp.getJobSequenced());
+        System.out.println(mp.getJobSequenced());*/
         
 //        mp.testingLinkedList(jobList);
-		
 		
 //		Job jobs[] = new Job[6];
 //        jobs[0] = new Job(0, 1, 3, 5);
