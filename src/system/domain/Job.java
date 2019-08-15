@@ -4,16 +4,10 @@ public class Job {
 	private int jobId;
 	private int startTime;
 	private int finishTime;
-	private int deadline;
+	private int duration;
 	private int profit;
 	
 	public Job() {
-	}
-	
-	public Job(int jobId, int deadline, int profit) {
-		this.jobId = jobId;
-		this.deadline = deadline;
-		this.profit = profit;
 	}
 	
 	public Job(int jobId, int startTime, int finishTime, int profit) {
@@ -22,6 +16,15 @@ public class Job {
 		this.finishTime = finishTime;
 		this.profit = profit;
 	}
+	
+	public int getDuration() {
+		return this.duration;
+	}
+	
+	public boolean setDuration() {
+		this.duration = this.finishTime - this.startTime + 1;
+		return true;
+	}
 
 	public int getJobId() {
 		return this.jobId;
@@ -29,16 +32,6 @@ public class Job {
 	
 	public boolean setJobId(int jobId) {
 		this.jobId = jobId;
-		return true;
-	}
-	
-	public int getDeadLine() {
-		return this.deadline;
-	}
-	
-	
-	public boolean setDeadline(int deadline) {
-		this.deadline = deadline;
 		return true;
 	}
 	

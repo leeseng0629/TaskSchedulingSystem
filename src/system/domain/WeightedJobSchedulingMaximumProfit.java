@@ -1,7 +1,7 @@
 package system.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -11,9 +11,12 @@ public class WeightedJobSchedulingMaximumProfit {
 	private Comparator<Job> byFinishTime;
 	private List<Integer> profitList;
 	
+	private List<Job> jobsLinkList;
+	
 	public WeightedJobSchedulingMaximumProfit() {
 		byFinishTime = new JobComparatorByFinishTime();
 		profitList = new ArrayList<>();
+		jobsLinkList = new LinkedList<>();
 	}
 	
 	public int maximum(ArrayList<Job> jobList) {
@@ -45,8 +48,7 @@ public class WeightedJobSchedulingMaximumProfit {
 		return maxVal;
 	}
 	
-	/*
-	public int maximum(Job[] jobs) {
+/*	public int maximum(Job[] jobs) {
 		int T[] = new int[jobs.length];
 		
 		Arrays.sort(jobs, byFinishTime);
@@ -75,6 +77,6 @@ public class WeightedJobSchedulingMaximumProfit {
 		for (int val : T) if (maxVal < val) maxVal = val;
 		
 		return maxVal;
-	}
-	*/
+	}*/
+	
 }
