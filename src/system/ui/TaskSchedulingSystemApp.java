@@ -24,18 +24,23 @@ public class TaskSchedulingSystemApp {
 		
 		WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit();
         System.out.println(mp.maximum(jobList));
+        System.out.println(mp.getProfitList());
+        System.out.println(mp.getJobLinkedList());
+        System.out.println(mp.getJobSequenced());
+        
+//        mp.testingLinkedList(jobList);
 		
-		/*
-		Job jobs[] = new Job[6];
-        jobs[0] = new Job(0, 1, 3, 5);
-        jobs[1] = new Job(1, 2, 5, 6);
-        jobs[2] = new Job(2, 4, 6, 5);
-        jobs[3] = new Job(3, 6, 7, 4);
-        jobs[4] = new Job(4, 5, 8, 11);
-        jobs[5] = new Job(5, 7, 9, 2);
-        WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit();
-        System.out.println(mp.maximum(jobs));
-        */
+		
+//		Job jobs[] = new Job[6];
+//        jobs[0] = new Job(0, 1, 3, 5);
+//        jobs[1] = new Job(1, 2, 5, 6);
+//        jobs[2] = new Job(2, 4, 6, 5);
+//        jobs[3] = new Job(3, 6, 7, 4);
+//        jobs[4] = new Job(4, 5, 8, 11);
+//        jobs[5] = new Job(5, 7, 9, 2);
+//        WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit();
+//        System.out.println("\n" + mp.maximum(jobs));
+        
 		
 		/*
 		String csvFile = "jobs.txt";
