@@ -5,6 +5,7 @@ public class Job {
 	private int startTime;
 	private int finishTime;
 	private int duration;
+	private int requiredHR;
 	private int profit;
 	
 	public Job() {
@@ -14,16 +15,17 @@ public class Job {
 		this.jobId = jobId;
 		this.startTime = startTime;
 		this.finishTime = finishTime;
+		this.setDuration();
 		this.profit = profit;
 	}
 	
-	public int getDuration() {
-		return this.duration;
-	}
-	
-	public boolean setDuration() {
-		this.duration = this.finishTime - this.startTime + 1;
-		return true;
+	public Job(int jobId, int startTime, int finishTime, int requiredHR, int profit) {
+		this.jobId = jobId;
+		this.startTime = startTime;
+		this.finishTime = finishTime;
+		this.setDuration();
+		this.requiredHR = requiredHR;
+		this.profit = profit;
 	}
 
 	public int getJobId() {
@@ -50,6 +52,24 @@ public class Job {
 	
 	public boolean setFinishTime(int finishTime) {
 		this.finishTime = finishTime;
+		return true;
+	}
+	
+	public int getDuration() {
+		return this.duration;
+	}
+	
+	public boolean setDuration() {
+		this.duration = this.finishTime - this.startTime + 1;
+		return true;
+	}
+	
+	public int getRequiredHR() {
+		return this.requiredHR;
+	}
+	
+	public boolean setRequiredHR(int requiredHR) {
+		this.requiredHR = requiredHR;
 		return true;
 	}
 	
