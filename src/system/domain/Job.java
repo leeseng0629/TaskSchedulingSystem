@@ -14,8 +14,8 @@ public class Job {
 		if (startTime < 0 || finishTime < 0) {
 			throw new TimeConstraintException("Start Time and Finish Time must be positive number");
 		}
-		else if (startTime > finishTime) {
-			throw new TimeConstraintException("Start Time is larger than Finish Time");
+		else if (startTime >= finishTime) {
+			throw new TimeConstraintException("Start Time is larger than or equal to Finish Time");
 		}
 		else if (profit < 0) {
 			throw new ProfitNegativeException("Profit must be positive number");
@@ -77,7 +77,7 @@ public class Job {
 	}
 	
 	public boolean setDuration() {
-		this.duration = this.finishTime - this.startTime + 1;
+		this.duration = this.finishTime - this.startTime;
 		return true;
 	}
 	

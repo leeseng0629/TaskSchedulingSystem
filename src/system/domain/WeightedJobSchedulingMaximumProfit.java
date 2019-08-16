@@ -15,10 +15,19 @@ public class WeightedJobSchedulingMaximumProfit {
 	private List<Integer> maxProfit;
 	private List<List<Job>> jobSequenced;
 	
+	public WeightedJobSchedulingMaximumProfit() {
+		this.byFinishTime = new JobComparatorByFinishTime();
+		this.counter = 0;
+		
+		// Results of profit and sequenced job is store in this ArrayList
+		this.jobSequenced = new ArrayList<>();
+		this.maxProfit = new ArrayList<>();
+	}
+	
 	public WeightedJobSchedulingMaximumProfit(List<Job> jobList) {
 		this.byFinishTime = new JobComparatorByFinishTime();
 		this.jobList = jobList;
-		counter = 0;
+		this.counter = 0;
 		
 		// Results of profit and sequenced job is store in this ArrayList
 		this.jobSequenced = new ArrayList<>();
@@ -85,8 +94,16 @@ public class WeightedJobSchedulingMaximumProfit {
 		this.counter = counter;
 	}
 	
+	public void setJobList(List<Job> jobList) {
+		this.jobList = jobList;
+	}
+	
 	public List<List<Job>> getJobSequenced() {
 		return this.jobSequenced;
+	}
+	
+	public List<Job> getSpecifiedJobSequenced(int index) {
+		return this.jobSequenced.get(index);
 	}
 	
 	public List<Integer> getMaxProfit() {
