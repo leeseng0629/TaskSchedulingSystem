@@ -11,13 +11,6 @@ public class WeightedJobSchedulingMaximumProfit {
 	private List<Job> jobList;
 	private int counter;
 	
-	// These ArrayList store the value that used to process
-	private List<List<Integer>> profitList;
-	private List<List<LinkedList<Job>>> jobSequencedList;
-	
-	// This ArrayList is to store the index to get the sequenced job
-	private List<Integer> jobSequencedIndex;
-	
 	// Results of profit and sequenced job is store in this ArrayList
 	private List<Integer> maxProfit;
 	private List<List<Job>> jobSequenced;
@@ -26,13 +19,6 @@ public class WeightedJobSchedulingMaximumProfit {
 		this.byFinishTime = new JobComparatorByFinishTime();
 		this.jobList = jobList;
 		counter = 0;
-		
-		// These ArrayList store the value that used to process
-		this.profitList = new ArrayList<>();
-		this.jobSequencedList = new ArrayList<>();
-		
-		// This ArrayList is to store the index to get the sequenced job
-		this.jobSequencedIndex = new ArrayList<>();
 		
 		// Results of profit and sequenced job is store in this ArrayList
 		this.jobSequenced = new ArrayList<>();
@@ -92,18 +78,9 @@ public class WeightedJobSchedulingMaximumProfit {
 			jobSequenced = jobSequencedList.get(jobSequencedIndex);
 			this.jobList.removeAll(jobSequenced);
 			
-			this.profitList.add(counter, profitList);
-			this.jobSequencedList.add(counter, jobSequencedList);
-			this.jobSequenced.add(counter, jobSequenced);
 			this.maxProfit.add(counter, maxProfit);
-			this.jobSequencedIndex.add(counter, jobSequencedIndex);
+			this.jobSequenced.add(counter, jobSequenced);
 			counter++;
-			
-			/*System.out.println(counter + " maxProfit: " + maxProfit);
-			System.out.println(counter + " jobList: " + jobList);
-			System.out.println(counter + " jobSequencedList: " + jobSequencedList);
-			System.out.println(counter + " jobSequenced: " + jobSequenced);
-			System.out.println(counter + " profitList: " + profitList);*/
 		}
 		this.counter = counter;
 	}
@@ -119,13 +96,5 @@ public class WeightedJobSchedulingMaximumProfit {
 	public int getCounter() {
 		return this.counter;
 	}
-	
-	/*public List<List<LinkedList<Job>>> getJobSequencedList() {
-		return this.jobSequencedList;
-	}
-	
-	public List<List<Integer>> getProfitList() {
-		return this.profitList;
-	}*/
 	
 }

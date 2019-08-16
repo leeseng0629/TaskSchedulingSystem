@@ -24,6 +24,10 @@ public class TaskSchedulingSystemApp {
 			jobList.add(new Job(5, 7, 9, 2));
 			WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit(jobList);
 			mp.calculateMaxProfitAndSequencingJob();
+			
+			System.out.println("Required Worker: " + mp.getCounter());
+			System.out.println("Sequenced Job: " + mp.getJobSequenced());
+			System.out.println("Max Profit: " + mp.getMaxProfit());
 		}
 		catch (TimeConstraintException err) {
 			err.printStackTrace();
