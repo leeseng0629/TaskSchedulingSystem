@@ -14,16 +14,24 @@ public class TaskSchedulingSystemApp {
 
 	public static void main(String[] args) {
 		
-		ArrayList<Job> jobList = new ArrayList<>();
-		jobList.add(new Job(0, 1, 3, 5));
-		jobList.add(new Job(1, 2, 5, 6));
-		jobList.add(new Job(2, 4, 6, 5));
-		jobList.add(new Job(3, 6, 7, 4));
-		jobList.add(new Job(4, 5, 8, 11));
-		jobList.add(new Job(5, 7, 9, 2));
+		try {
+			ArrayList<Job> jobList = new ArrayList<>();
+			jobList.add(new Job(0, 1, 3, 5));
+			jobList.add(new Job(1, 2, 5, 6));
+			jobList.add(new Job(2, 4, 6, 5));
+			jobList.add(new Job(3, 6, 7, 4));
+			jobList.add(new Job(4, 5, 8, 11));
+			jobList.add(new Job(5, 7, 9, 2));
+			WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit(jobList);
+			mp.calculateMaxProfitAndSequencingJob();
+		}
+		catch (TimeConstraintException err) {
+			err.printStackTrace();
+		}
+		catch (ProfitNegativeException err) {
+			err.printStackTrace();
+		}
 		
-		WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit(jobList);
-		mp.calculateMaxProfitAndSequencingJob();
         /*System.out.println(mp.getProfitList());
         System.out.println(mp.getJobLinkedList());
         System.out.println(mp.getJobSequenced());*/

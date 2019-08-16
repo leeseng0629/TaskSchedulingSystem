@@ -11,11 +11,22 @@ public class Job {
 	}
 	
 	public Job(int jobId, int startTime, int finishTime, int profit) {
-		this.jobId = jobId;
-		this.startTime = startTime;
-		this.finishTime = finishTime;
-		this.setDuration();
-		this.profit = profit;
+		if (startTime < 0 || finishTime < 0) {
+			throw new TimeConstraintException("Start Time and Finish Time must be positive number");
+		}
+		else if (startTime > finishTime) {
+			throw new TimeConstraintException("Start Time is larger than Finish Time");
+		}
+		else if (profit < 0) {
+			throw new ProfitNegativeException("Profit must be positive number");
+		}
+		else {
+			this.jobId = jobId;
+			this.startTime = startTime;
+			this.finishTime = finishTime;
+			this.setDuration();
+			this.profit = profit;			
+		}
 	}
 
 	public int getJobId() {
@@ -32,8 +43,16 @@ public class Job {
 	}
 	
 	public boolean setStartTime(int startTime) {
-		this.startTime = startTime;
-		return true;
+		if (startTime < 0) {
+			throw new TimeConstraintException("Start Time and Finish Time must be positive number");
+		}
+		else if (startTime > this.finishTime) {
+			throw new TimeConstraintException("Start Time is larger than Finish Time");
+		}
+		else {
+			this.startTime = startTime;
+			return true;			
+		}
 	}
 	
 	public int getFinishTime() {
@@ -41,8 +60,16 @@ public class Job {
 	}
 	
 	public boolean setFinishTime(int finishTime) {
-		this.finishTime = finishTime;
-		return true;
+		if (finishTime < 0) {
+			throw new TimeConstraintException("Start Time and Finish Time must be positive number");
+		}
+		if (this.startTime > finishTime) {
+			throw new TimeConstraintException("Start Time is larger than Finish Time");
+		}
+		else {
+			this.finishTime = finishTime;
+			return true;			
+		}
 	}
 	
 	public int getDuration() {
@@ -59,8 +86,13 @@ public class Job {
 	}
 	
 	public boolean setProfit (int profit) {
-		this.profit = profit;
-		return true;
+		if (profit < 0) {
+			throw new ProfitNegativeException("Profit must be positive number");
+		}
+		else {
+			this.profit = profit;
+			return true;
+		}
 	}
 	
 	public String toString() {

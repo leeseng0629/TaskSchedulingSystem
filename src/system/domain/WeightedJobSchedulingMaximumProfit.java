@@ -71,7 +71,7 @@ public class WeightedJobSchedulingMaximumProfit {
 			}
 			
 			for (int i = 0; i < profitList.size(); i++) {
-				if (maxProfit < profitList.get(i)) {
+				if (maxProfit <= profitList.get(i)) {
 					maxProfit = profitList.get(i);
 					this.jobSequencedIndex = i;
 				}
@@ -79,10 +79,11 @@ public class WeightedJobSchedulingMaximumProfit {
 			
 			jobSequenced = jobLinkedList.get(jobSequencedIndex);
 			jobList.removeAll(jobSequenced);
-			System.out.println(counter + " " + maxProfit);
-			System.out.println(counter + " " + jobList);
-			System.out.println(counter + " " + jobLinkedList);
-			System.out.println(counter + " " + profitList);
+			System.out.println(counter + " maxProfit: " + maxProfit);
+			System.out.println(counter + " jobList: " + jobList);
+			System.out.println(counter + " jobLinkedList: " + jobLinkedList);
+			System.out.println(counter + " jobSequenced: " + jobSequenced);
+			System.out.println(counter + " profitList: " + profitList);
 			counter++;
 		}
 	}
