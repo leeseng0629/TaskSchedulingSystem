@@ -12,16 +12,16 @@ public class WeightedJobSchedulingMaximumProfit {
 	private int counter;
 	
 	// Results of profit and sequenced job is store in this ArrayList
-	private List<Integer> maxProfit;
-	private List<List<Job>> jobSequenced;
+	private List<Integer> maxProfits;
+	private List<LinkedList<Job>> jobSequencedList;
 	
 	public WeightedJobSchedulingMaximumProfit() {
 		this.byFinishTime = new JobComparatorByFinishTime();
 		this.counter = 0;
 		
 		// Results of profit and sequenced job is store in this ArrayList
-		this.jobSequenced = new ArrayList<>();
-		this.maxProfit = new ArrayList<>();
+		this.jobSequencedList = new ArrayList<>();
+		this.maxProfits = new ArrayList<>();
 	}
 	
 	public WeightedJobSchedulingMaximumProfit(List<Job> jobList) {
@@ -30,8 +30,8 @@ public class WeightedJobSchedulingMaximumProfit {
 		this.counter = 0;
 		
 		// Results of profit and sequenced job is store in this ArrayList
-		this.jobSequenced = new ArrayList<>();
-		this.maxProfit = new ArrayList<>();
+		this.jobSequencedList = new ArrayList<>();
+		this.maxProfits = new ArrayList<>();
 	}
 	
 	public void calculateMaxProfitAndSequencingJob() {
@@ -43,7 +43,7 @@ public class WeightedJobSchedulingMaximumProfit {
 			int jobSequencedIndex = 0;
 			
 			int maxProfit = Integer.MIN_VALUE;
-			List<Job> jobSequenced = new LinkedList<>();
+			LinkedList<Job> jobSequenced = new LinkedList<>();
 			
 			Collections.sort(jobList, byFinishTime);
 			profitList.add(jobList.get(0).getProfit());
@@ -87,8 +87,8 @@ public class WeightedJobSchedulingMaximumProfit {
 			jobSequenced = jobSequencedList.get(jobSequencedIndex);
 			this.jobList.removeAll(jobSequenced);
 			
-			this.maxProfit.add(counter, maxProfit);
-			this.jobSequenced.add(counter, jobSequenced);
+			this.maxProfits.add(counter, maxProfit);
+			this.jobSequencedList.add(counter, jobSequenced);
 			counter++;
 		}
 		this.counter = counter;
@@ -98,16 +98,20 @@ public class WeightedJobSchedulingMaximumProfit {
 		this.jobList = jobList;
 	}
 	
-	public List<List<Job>> getJobSequenced() {
-		return this.jobSequenced;
+	public List<LinkedList<Job>> getJobSequenced() {
+		return this.jobSequencedList;
 	}
 	
-	public List<Job> getSpecifiedJobSequenced(int index) {
-		return this.jobSequenced.get(index);
+	public LinkedList<Job> getSpecifiedJobSequenced(int index) {
+		return this.jobSequencedList.get(index);
 	}
 	
 	public List<Integer> getMaxProfit() {
-		return this.maxProfit;
+		return this.maxProfits;
+	}
+	
+	public int getSpecifiedMaxProfit(int index) {
+		return this.maxProfits.get(index);
 	}
 	
 	public int getCounter() {

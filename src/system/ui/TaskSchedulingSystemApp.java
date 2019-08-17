@@ -38,9 +38,6 @@ public class TaskSchedulingSystemApp {
 			mp.setJobList(jobList);
 			mp.calculateMaxProfitAndSequencingJob();
 			
-			/*System.out.println("Required Worker: " + mp.getCounter());
-			System.out.println("Sequenced Job: " + mp.getJobSequenced());
-			System.out.println("Max Profit: " + mp.getMaxProfit());*/
 		}
 		catch (TimeConstraintException err) {
 			err.printStackTrace();
@@ -48,11 +45,11 @@ public class TaskSchedulingSystemApp {
 		catch (ProfitNegativeException err) {
 			err.printStackTrace();
 		}
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
+		catch (FileNotFoundException err) {
+			err.printStackTrace();
 		} 
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (IOException err) {
+			err.printStackTrace();
 		} 
 		finally {
 			if (br != null) {
@@ -65,13 +62,13 @@ public class TaskSchedulingSystemApp {
 		}
 		
 		Worker worker = new Worker();
-		List<Job> jobSequenced = mp.getSpecifiedJobSequenced(0);
-		worker.assginJob(jobSequenced);
+		LinkedList<Job> jobSequenced = mp.getSpecifiedJobSequenced(0);
+		int maxProfit = mp.getSpecifiedMaxProfit(0);
+		worker.assginJob(jobSequenced, maxProfit);
 		
-	}
-	
-	public static int getRandomInteger(int start, int end) {
-		return start + intRandom.nextInt(end - start + 1);
+		System.out.println("This Worker has idle for " + worker.getIdleTime() + " unit of time. ");
+		System.out.println("This Worker has made " + worker.getProfitWorkerMade() + " unit of profit. ");
+		
 	}
 
 }
