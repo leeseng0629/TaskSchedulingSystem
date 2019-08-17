@@ -1,6 +1,7 @@
 package system.domain;
 
 public class Job {
+	private final int MAX_TIME = 10;
 	private int jobId;
 	private int startTime;
 	private int finishTime;
@@ -13,6 +14,9 @@ public class Job {
 	public Job(int jobId, int startTime, int finishTime, int profit) {
 		if (startTime < 0 || finishTime < 0) {
 			throw new TimeConstraintException("Start Time and Finish Time must be positive number");
+		}
+		else if (startTime > MAX_TIME || finishTime > MAX_TIME) {
+			throw new TimeConstraintException("Start Time and Finish Time must less than 10 unit of time");
 		}
 		else if (startTime >= finishTime) {
 			throw new TimeConstraintException("Start Time is larger than or equal to Finish Time");
@@ -46,6 +50,9 @@ public class Job {
 		if (startTime < 0) {
 			throw new TimeConstraintException("Start Time and Finish Time must be positive number");
 		}
+		else if (startTime > MAX_TIME) {
+			throw new TimeConstraintException("Start Time and Finish Time must less than 10 unit of time");
+		}
 		else if (startTime > this.finishTime) {
 			throw new TimeConstraintException("Start Time is larger than Finish Time");
 		}
@@ -63,7 +70,10 @@ public class Job {
 		if (finishTime < 0) {
 			throw new TimeConstraintException("Start Time and Finish Time must be positive number");
 		}
-		if (this.startTime > finishTime) {
+		else if (finishTime > MAX_TIME) {
+			throw new TimeConstraintException("Start Time and Finish Time must less than 10 unit of time");
+		}
+		else if (this.startTime > finishTime) {
 			throw new TimeConstraintException("Start Time is larger than Finish Time");
 		}
 		else {
@@ -76,7 +86,7 @@ public class Job {
 		return this.duration;
 	}
 	
-	public boolean setDuration() {
+	private boolean setDuration() {
 		this.duration = this.finishTime - this.startTime;
 		return true;
 	}

@@ -10,17 +10,23 @@ import java.util.*;
 
 public class TaskSchedulingSystemApp {
 	
-	private static final Random intRandom = new Random();
+	private static ArrayList<Job> jobList;
+	private static Sequencer sequencer;
+	private static ArrayList<Worker> workerList;
+	private static int totalProfitAfterScheduled;
+	private static int totalWastedResources;
 
 	public static void main(String[] args) {
-		String csvFile = "jobs.txt";
-        BufferedReader br = null;
-        String line = "";
-        String csvSplitBy = ", ";
-        
-		ArrayList<Job> jobList = new ArrayList<>();
+		jobList = new ArrayList<>();
+		sequencer = new Sequencer();
+		workerList = new ArrayList<>();
+		totalProfitAfterScheduled = 0;
+		totalWastedResources = 0;
 		
-		WeightedJobSchedulingMaximumProfit mp = new WeightedJobSchedulingMaximumProfit();
+		String csvFile = "jobs.txt", 
+				line = "", 
+				csvSplitBy = ", ";
+        BufferedReader br = null;
 		
 		try {
 			br = new BufferedReader(new FileReader(csvFile));
@@ -35,8 +41,8 @@ public class TaskSchedulingSystemApp {
 				jobList.add(new Job(job_id, job_start, job_end, job_profit));
 			}
 			
-			mp.setJobList(jobList);
-			mp.calculateMaxProfitAndSequencingJob();
+			sequencer.setJobList(jobList);
+			sequencer.calculateMaxProfitAndSequencingJob();
 			
 		}
 		catch (TimeConstraintException err) {
@@ -61,13 +67,21 @@ public class TaskSchedulingSystemApp {
 			}
 		}
 		
-		Worker worker = new Worker();
-		LinkedList<Job> jobSequenced = mp.getSpecifiedJobSequenced(0);
-		int maxProfit = mp.getSpecifiedMaxProfit(0);
-		worker.assginJob(jobSequenced, maxProfit);
+		for (int i = 0; i < sequencer.getCounter(); i++) {
+			LinkedList<Job> jobSequenced = sequencer.getSpecifiedJobSequenced(i);
+			int maxProfit = sequencer.getSpecifiedMaxProfit(i);
+			Worker worker = new Worker();
+			worker.assginJob(jobSequenced, maxProfit);
+			workerList.add(worker);
+		}
 		
-		System.out.println("This Worker has idle for " + worker.getIdleTime() + " unit of time. ");
-		System.out.println("This Worker has made " + worker.getProfitWorkerMade() + " unit of profit. ");
+		for (Worker worker : workerList) {
+			totalProfitAfterScheduled += worker.getProfitWorkerMade();
+			totalWastedResources += worker.getIdleTime();
+		}
+		
+		System.out.println(totalProfitAfterScheduled);
+		System.out.println(totalWastedResources);
 		
 	}
 

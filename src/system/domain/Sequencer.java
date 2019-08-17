@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class WeightedJobSchedulingMaximumProfit {
+public class Sequencer {
 	private Comparator<Job> byFinishTime;
 	private List<Job> jobList;
 	private int counter;
@@ -15,7 +15,7 @@ public class WeightedJobSchedulingMaximumProfit {
 	private List<Integer> maxProfits;
 	private List<LinkedList<Job>> jobSequencedList;
 	
-	public WeightedJobSchedulingMaximumProfit() {
+	public Sequencer() {
 		this.byFinishTime = new JobComparatorByFinishTime();
 		this.counter = 0;
 		
@@ -24,7 +24,7 @@ public class WeightedJobSchedulingMaximumProfit {
 		this.maxProfits = new ArrayList<>();
 	}
 	
-	public WeightedJobSchedulingMaximumProfit(List<Job> jobList) {
+	public Sequencer(List<Job> jobList) {
 		this.byFinishTime = new JobComparatorByFinishTime();
 		this.jobList = jobList;
 		this.counter = 0;
