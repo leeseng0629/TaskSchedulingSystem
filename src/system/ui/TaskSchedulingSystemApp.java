@@ -41,6 +41,9 @@ public class TaskSchedulingSystemApp {
 				jobList.add(new Job(job_id, job_start, job_end, job_profit));
 			}
 			
+			/**
+			 * Use sequencer to help us sequence the job
+			 */
 			sequencer.setJobList(jobList);
 			sequencer.calculateMaxProfitAndSequencingJob();
 			
@@ -67,8 +70,15 @@ public class TaskSchedulingSystemApp {
 			}
 		}
 		
+	  	Scheduling();
 		
-	  	/**
+		System.out.println(totalProfitAfterScheduled);
+		System.out.println(totalWastedResources);
+		
+	}
+	
+	private static void Scheduling() {
+		/**
 	  	 * Worker will be initialize here
 	  	 * The number of workers is depends on how many
 	  	 * jobSequnced we have, then assign to them
@@ -90,10 +100,6 @@ public class TaskSchedulingSystemApp {
 			totalWastedResources += worker.getIdleTime();
 			System.out.println(worker.getScheduledTime());
 		}
-		
-		System.out.println(totalProfitAfterScheduled);
-		System.out.println(totalWastedResources);
-		
 	}
 
 }
