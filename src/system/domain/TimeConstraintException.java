@@ -6,8 +6,4 @@ public class TimeConstraintException extends RuntimeException {
 		super(message);
 	}
 	
-	public TimeConstraintException(String message, Throwable cause) {
-		super(message, cause);
-	}
-	
 }

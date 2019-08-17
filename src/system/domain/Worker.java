@@ -17,7 +17,6 @@ public class Worker {
 	}
 	
 	public void assginJob(LinkedList<Job> jobSequenced, int maxProfit) {
-//		int lastJobFinishTime = jobSequenced.getLast().getFinishTime();
 		for (int i = 0; i < MAX_SIZE; i++) {
 			ScheduledTime.add(null);
 		}
