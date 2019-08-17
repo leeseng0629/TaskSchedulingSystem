@@ -38,7 +38,7 @@ public class Sequencer {
 		int counter = 0;
 		while (jobList.size() != 0) {
 			List<Integer> profitList = new ArrayList<>();
-			List<LinkedList<Job>> jobSequencedList = new ArrayList<>();
+			List<LinkedList<Job>> jobSequencedToBeSelected = new ArrayList<>();
 			
 			int jobSequencedIndex = 0;
 			
@@ -47,13 +47,13 @@ public class Sequencer {
 			
 			Collections.sort(jobList, byFinishTime);
 			profitList.add(jobList.get(0).getProfit());
-			jobSequencedList.add(new LinkedList<>());
-			jobSequencedList.get(0).add(jobList.get(0));
+			jobSequencedToBeSelected.add(new LinkedList<>());
+			jobSequencedToBeSelected.get(0).add(jobList.get(0));
 			
 			for (int i = 1; i < jobList.size(); i++) {
 				profitList.add(jobList.get(i).getProfit());
-				jobSequencedList.add(new LinkedList<>());
-				jobSequencedList.get(i).add(jobList.get(i));
+				jobSequencedToBeSelected.add(new LinkedList<>());
+				jobSequencedToBeSelected.get(i).add(jobList.get(i));
 				
 				for (int j = i - 1; j >= 0; j--) {
 					if (jobList.get(j).getFinishTime() <= jobList.get(i).getStartTime()) {
@@ -68,10 +68,10 @@ public class Sequencer {
 						}
 						
 						if (changed) {
-							LinkedList<Job> previousList = jobSequencedList.get(j);
-							jobSequencedList.get(i).clear();
-							jobSequencedList.get(i).add(jobList.get(i));
-							jobSequencedList.get(i).addAll(0, previousList);
+							LinkedList<Job> previousList = jobSequencedToBeSelected.get(j);
+							jobSequencedToBeSelected.get(i).clear();
+							jobSequencedToBeSelected.get(i).add(jobList.get(i));
+							jobSequencedToBeSelected.get(i).addAll(0, previousList);
 						}
 					}
 				}
@@ -84,7 +84,7 @@ public class Sequencer {
 				}
 			}
 			
-			jobSequenced = jobSequencedList.get(jobSequencedIndex);
+			jobSequenced = jobSequencedToBeSelected.get(jobSequencedIndex);
 			this.jobList.removeAll(jobSequenced);
 			
 			this.maxProfits.add(counter, maxProfit);
