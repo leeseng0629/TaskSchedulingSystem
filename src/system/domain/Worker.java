@@ -49,12 +49,7 @@ public class Worker {
 	}
 	
 	private void calculateProfitWorkerMade(int maxProfit) {
-		this.profitWorkerMade = maxProfit;
-		int counter = this.idleTime;
-		while (!(counter == 0)) {
-			this.profitWorkerMade--;
-			--counter;
-		}
+		this.profitWorkerMade = maxProfit - this.idleTime;
 	}
 	
 	public int getIdleTime() {
