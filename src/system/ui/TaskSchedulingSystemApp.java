@@ -67,10 +67,12 @@ public class TaskSchedulingSystemApp {
 			}
 		}
 		
-		 /**Worker will be initialize here
-		  *	The number of workers is depends on how many
-		  *	jobSequnced we have, then assign to them
-		  */
+		
+	  	/**
+	  	 * Worker will be initialize here
+	  	 * The number of workers is depends on how many
+	  	 * jobSequnced we have, then assign to them
+	  	 */
 		for (int i = 0; i < sequencer.getCounter(); i++) {
 			LinkedList<Job> jobSequenced = sequencer.getSpecifiedJobSequenced(i);
 			int maxProfit = sequencer.getSpecifiedMaxProfit(i);
@@ -80,8 +82,8 @@ public class TaskSchedulingSystemApp {
 		}
 		
 		/**
-		 * The result we want is total profit after we scheduled
-		 * , the total resources we wasted and maybe the worker's time schedule.
+		 * The result we want is total profit after we scheduled, 
+		 * the total resources we wasted and maybe the worker's time schedule.
 		 */
 		for (Worker worker : workerList) {
 			totalProfitAfterScheduled += worker.getProfitWorkerMade();
