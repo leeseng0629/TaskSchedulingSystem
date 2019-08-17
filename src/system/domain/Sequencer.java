@@ -8,7 +8,11 @@ import java.util.List;
 
 public class Sequencer {
 	private Comparator<Job> byFinishTime;
+	
+	// Raw Input
 	private List<Job> jobList;
+	
+	// To count the number of worker we need
 	private int counter;
 	
 	// Results of profit and sequenced job is store in this ArrayList
@@ -37,7 +41,9 @@ public class Sequencer {
 	public void calculateMaxProfitAndSequencingJob() {
 		int counter = 0;
 		while (jobList.size() != 0) {
+			// A list of profit, that can be produced by several of job sequences.
 			List<Integer> profitList = new ArrayList<>();
+			// A list of sequences of job, the sequence can produce maximum profit will be selected.
 			List<LinkedList<Job>> jobSequencedToBeSelected = new ArrayList<>();
 			
 			int jobSequencedIndex = 0;
