@@ -5,12 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Worker {
+	private int workerId;
 	private List<Boolean> ScheduledTime;
 	private int idleTime;
 	private int profitWorkerMade;
 	private final static int MAX_SIZE = 10;
 	
-	public Worker() {
+	public Worker(int workerId) {
+		this.workerId = workerId;
 		ScheduledTime = new ArrayList<>();
 	}
 	
@@ -52,6 +54,10 @@ public class Worker {
 		this.profitWorkerMade = maxProfit - this.idleTime;
 	}
 	
+	public int getWorkerId() {
+		return this.workerId;
+	}
+	
 	public int getIdleTime() {
 		return this.idleTime;
 	}
@@ -62,6 +68,12 @@ public class Worker {
 	
 	public List<Boolean> getScheduledTime() {
 		return this.ScheduledTime;
+	}
+	
+	public String toString() {
+		return "Worker " + this.getWorkerId() + " can make profit of " + this.getProfitWorkerMade() + " unit of profit. \n" + 
+				"Worker " + this.getWorkerId() + " idle for " + this.getIdleTime() + " unit of time. \n" + 
+				this.ScheduledTime + "\n";
 	}
 	
 }

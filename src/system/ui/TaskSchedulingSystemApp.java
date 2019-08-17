@@ -72,9 +72,8 @@ public class TaskSchedulingSystemApp {
 		
 	  	Scheduling();
 		
-		System.out.println(totalProfitAfterScheduled);
-		System.out.println(totalWastedResources);
-		
+		System.out.println("Total Profit we made: " + totalProfitAfterScheduled);
+		System.out.println("Total resources we wasted: " + totalWastedResources);
 	}
 	
 	private static void Scheduling() {
@@ -86,7 +85,7 @@ public class TaskSchedulingSystemApp {
 		for (int i = 0; i < sequencer.getCounter(); i++) {
 			LinkedList<Job> jobSequenced = sequencer.getSpecifiedJobSequenced(i);
 			int maxProfit = sequencer.getSpecifiedMaxProfit(i);
-			Worker worker = new Worker();
+			Worker worker = new Worker(i);
 			worker.assginJob(jobSequenced, maxProfit);
 			workerList.add(worker);
 		}
@@ -98,7 +97,7 @@ public class TaskSchedulingSystemApp {
 		for (Worker worker : workerList) {
 			totalProfitAfterScheduled += worker.getProfitWorkerMade();
 			totalWastedResources += worker.getIdleTime();
-			System.out.println(worker.getScheduledTime());
+			System.out.println(worker.toString());
 		}
 	}
 
