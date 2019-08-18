@@ -51,7 +51,10 @@ public class Sequencer {
 			int maxProfit = Integer.MIN_VALUE;
 			LinkedList<Job> jobSequenced = new LinkedList<>();
 			
+			// Sorting
 			Collections.sort(jobList, byFinishTime);
+			
+			// Initialize profitList and jobSequencedToBeSelected
 			profitList.add(jobList.get(0).getProfit());
 			jobSequencedToBeSelected.add(new LinkedList<>());
 			jobSequencedToBeSelected.get(0).add(jobList.get(0));
